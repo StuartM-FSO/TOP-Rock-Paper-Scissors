@@ -1,26 +1,35 @@
-let options = ["Rock", "Paper", "Scissors"];
-let losesTo = [2, 0, 1];
+const options = ["Rock", "Paper", "Scissors"];
+const losesTo = [2, 0, 1];
 let humanScore = 0;
 let computerScore = 0;
 
-let h = getHumanChoice();
-let c = getComputerChoice();
-
-let result = playRound(c, h);
-let message = "";
-switch(result){
-    case "win": message = `You ${result}: ${options[h]} beats ${options[c]}`;
-        humanScore++;
-        break;
-    case "lose": message = `You ${result}: ${options[c]} beats ${options[h]}`;
-        computerScore++;
-        break;
-    case "draw": message = `It's a ${result}: both chose ${options[c]}`;
-        break;
-    default: break;
+for(let i = 0; i < 5; i++){
+    let h = getHumanChoice();
+    let c = getComputerChoice();
+    let result = playRound(c, h);
+    let message = "";
+    switch(result){
+        case "win": message = `You ${result}: ${options[h]} beats ${options[c]}`;
+            humanScore++;
+            break;
+        case "lose": message = `You ${result}: ${options[c]} beats ${options[h]}`;
+            computerScore++;
+            break;
+        case "draw": message = `It's a ${result}: both chose ${options[c]}`;
+            break;
+        default: break;
+    }
+    console.log(`Round ${i+1} ${message}`);
+    console.log(`Human: ${humanScore} vs Computer: ${computerScore}`);
 }
-console.log(message);
-console.log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+
+if(humanScore === computerScore){
+    console.log("It was a draw");
+} else if(humanScore > computerScore){
+    console.log("Human wins");
+} else {
+    console.log("Computer wins");
+}
 
 function getComputerChoice(){
     let x = Math.random() * 3;
